@@ -6,9 +6,8 @@ inputs:
   your-secret:
     description: A Personal Access Token with the repo scope stored as a secret
     required: true
-     secrets:
-      SUB_ID:
-        required: true
+     env: # Or as an environment variable
+      credentials: ${{ secrets.SUB_ID }}
     
   secrets-context:
     description: The GitHub Actions secrets context object
