@@ -1,0 +1,46 @@
+{
+ "properties": {
+  "displayName": "Require a tag on subscription CUSTOM",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Enforces existence of a tag on subscription.",
+  "metadata": {
+   "category": "Tags",
+   "version": "1.0.0",
+   "createdBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "createdOn": "2021-05-06T08:52:26.7204947Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "tagName": {
+    "type": "string",
+    "metadata": {
+     "description": "Name of the tag, such as 'environment'",
+     "displayName": "Tag Name",
+     "defaultvalue": "Division"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Resources/subscriptions"
+     },
+     {
+      "field": "[concat('tags[', parameters('tagName'), ']')]",
+      "exists": "false"
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e/providers/Microsoft.Authorization/policyDefinitions/Tag name required - testname",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "Tag name required - testname"
+}

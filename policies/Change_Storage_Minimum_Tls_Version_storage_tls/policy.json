@@ -1,0 +1,91 @@
+{
+ "properties": {
+  "displayName": "Change Storage Minimum Tls Version",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "DD",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "Storage",
+   "createdBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "createdOn": "2022-11-16T23:00:41.4407605Z",
+   "updatedBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "updatedOn": "2022-11-16T23:39:40.8189911Z"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "DeployIfNotExists",
+     "Disabled"
+    ],
+    "defaultValue": "DeployIfNotExists"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Storage/storageAccounts"
+     },
+     {
+      "field": "Microsoft.Storage/storageAccounts/minimumTlsVersion",
+      "equals": "TLS1_0"
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": {
+     "type": "Microsoft.Storage/storageAccounts",
+     "name": "[[field('name')]",
+     "existenceCondition": {
+      "field": "Microsoft.Storage/storageAccounts/minimumTlsVersion",
+      "equals": false
+     },
+     "roleDefinitionIds": [
+      "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+     ],
+     "deployment": {
+      "properties": {
+       "mode": "incremental",
+       "template": {
+        "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+         "storageAccountName": {
+          "type": "string"
+         }
+        },
+        "resources": [
+         {
+          "apiVersion": "2022-09-01",
+          "type": "Microsoft.Storage/storageAccounts",
+          "name": "[parameters('storageAccountName')]",
+          "location": "westeurope",
+          "properties": {
+           "minimumTlsVersion": "TLS1_2"
+          }
+         }
+        ]
+       },
+       "parameters": {
+        "storageAccountName": {
+         "value": "[field('name')]"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "id": "/subscriptions/84eba6fd-683f-4f6b-a6e3-d5259cd9ac94/providers/Microsoft.Authorization/policyDefinitions/storage tls",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "storage tls"
+}

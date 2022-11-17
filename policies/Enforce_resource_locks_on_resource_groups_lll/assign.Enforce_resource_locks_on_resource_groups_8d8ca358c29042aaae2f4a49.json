@@ -1,0 +1,31 @@
+{
+ "sku": {
+  "name": "A0",
+  "tier": "Free"
+ },
+ "identity": {
+  "principalId": "0092871e-7dd4-4e4f-ba35-893f08fee8b8",
+  "tenantId": "a7461f9b-ee46-4cba-9c7c-de039097f263",
+  "type": "SystemAssigned"
+ },
+ "properties": {
+  "displayName": "Enforce resource locks on resource groups",
+  "policyDefinitionId": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e/providers/Microsoft.Authorization/policyDefinitions/lll",
+  "scope": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e",
+  "notScopes": [],
+  "parameters": {},
+  "metadata": {
+   "assignedBy": "Simon Klitgaard Nielsen",
+   "parameterScopes": {},
+   "createdBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "createdOn": "2021-09-17T14:15:28.6666317Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "enforcementMode": "Default"
+ },
+ "id": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e/providers/Microsoft.Authorization/policyAssignments/8d8ca358c29042aaae2f4a49",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "8d8ca358c29042aaae2f4a49",
+ "location": "eastus"
+}

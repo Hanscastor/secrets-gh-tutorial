@@ -1,0 +1,67 @@
+{
+ "properties": {
+  "displayName": "Enforce resource locks on resource groups",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Enforce Resource Lock on Resource Groups",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "Governance",
+   "createdBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "createdOn": "2021-09-17T14:07:53.5276522Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+     },
+     {
+      "field": "name",
+      "notEquals": "Backup*"
+     }
+    ]
+   },
+   "then": {
+    "effect": "deployIfNotExists",
+    "details": {
+     "type": "Microsoft.Authorization/locks",
+     "existenceCondition": {
+      "field": "Microsoft.Authorization/locks/level",
+      "equals": "CanNotDelete"
+     },
+     "roleDefinitionIds": [
+      "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+     ],
+     "deployment": {
+      "properties": {
+       "mode": "incremental",
+       "template": {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+        "contentVersion": "1.0.0.0",
+        "resources": [
+         {
+          "type": "Microsoft.Authorization/locks",
+          "apiVersion": "2017-04-01",
+          "name": "ResourceLock",
+          "properties": {
+           "level": "CanNotDelete",
+           "notes": "Set by Azure policy - Prevent deletion of the resource group"
+          }
+         }
+        ]
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "id": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e/providers/Microsoft.Authorization/policyDefinitions/lll",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "lll"
+}

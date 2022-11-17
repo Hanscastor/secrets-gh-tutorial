@@ -1,0 +1,28 @@
+{
+ "sku": {
+  "name": "A1",
+  "tier": "Standard"
+ },
+ "properties": {
+  "displayName": "Azure Backup should be enabled for Virtual Machines",
+  "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/013e242c-8828-4970-87b3-ab247555486d",
+  "scope": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e",
+  "notScopes": [],
+  "parameters": {
+   "effect": {
+    "value": "AuditIfNotExists"
+   }
+  },
+  "description": "",
+  "metadata": {
+   "createdBy": "e8faa0ed-0f33-41a4-8523-95b514c0955f",
+   "createdOn": "2022-03-15T13:26:52.0579121Z",
+   "updatedBy": "e8faa0ed-0f33-41a4-8523-95b514c0955f",
+   "updatedOn": "2022-03-15T13:33:48.5049869Z"
+  },
+  "enforcementMode": "Default"
+ },
+ "id": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e/providers/Microsoft.Authorization/policyAssignments/b6083956b40b861e3574df5e22bdeac5318937dc8bcdac4595657da933a64223",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "b6083956b40b861e3574df5e22bdeac5318937dc8bcdac4595657da933a64223"
+}

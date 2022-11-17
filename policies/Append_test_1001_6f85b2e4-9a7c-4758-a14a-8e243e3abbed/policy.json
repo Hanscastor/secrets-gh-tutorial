@@ -1,0 +1,101 @@
+{
+ "properties": {
+  "displayName": "Append test 1001",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "metadata": {
+   "createdBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "createdOn": "2021-05-08T11:54:50.571432Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "tagName1": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name1",
+     "description": "Name of the tag, such as 'environment'"
+    },
+    "defaultValue": "environment"
+   },
+   "tagValue1": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name1 Value",
+     "description": "Value of the tag, such as 'production'"
+    },
+    "defaultValue": "production"
+   },
+   "tagName2": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name2",
+     "description": "Name of the tag, such as 'service'"
+    },
+    "defaultValue": "service"
+   },
+   "tagValue2": {
+    "type": "String",
+    "metadata": {
+     "displayName": "TagName2 Value",
+     "description": "Value of the tag, such as 'webapps'"
+    },
+    "defaultValue": "webapps"
+   },
+   "tagName3": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name3",
+     "description": "Name of the tag, such as 'project'"
+    },
+    "defaultValue": "project"
+   },
+   "tagValue3": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name3 Value",
+     "description": "Value of the tag, such as 'POC'"
+    },
+    "defaultValue": "POC"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "[concat('tags[', parameters('tagName1'), ']')]",
+      "exists": "false"
+     },
+     {
+      "field": "[concat('tags[', parameters('tagName2'), ']')]",
+      "exists": "false"
+     },
+     {
+      "field": "[concat('tags[', parameters('tagName3'), ']')]",
+      "exists": "false"
+     }
+    ]
+   },
+   "then": {
+    "effect": "append",
+    "details": [
+     {
+      "field": "[concat('tags[', parameters('tagName1'), ']')]",
+      "value": "[parameters('tagValue1')]"
+     },
+     {
+      "field": "[concat('tags[', parameters('tagName2'), ']')]",
+      "value": "[parameters('tagValue2')]"
+     },
+     {
+      "field": "[concat('tags[', parameters('tagName3'), ']')]",
+      "value": "[parameters('tagValue3')]"
+     }
+    ]
+   }
+  }
+ },
+ "id": "/subscriptions/84eba6fd-683f-4f6b-a6e3-d5259cd9ac94/providers/Microsoft.Authorization/policyDefinitions/6f85b2e4-9a7c-4758-a14a-8e243e3abbed",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "6f85b2e4-9a7c-4758-a14a-8e243e3abbed"
+}

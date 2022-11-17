@@ -1,0 +1,52 @@
+{
+ "properties": {
+  "displayName": "Restrict allowed locations for resources",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "This policy restrict the locations you can specify when deploying resources. Excludes resource groups, Microsoft.AzureActiveDirectory/b2cDirectories, and resources that use the 'global' region.",
+  "metadata": {
+   "category": "General",
+   "createdBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "createdOn": "2021-05-02T13:04:11.7438226Z",
+   "updatedBy": "1b850c3a-881f-45f0-a193-3d51e0d90720",
+   "updatedOn": "2021-05-02T14:03:24.8758237Z"
+  },
+  "parameters": {
+   "allowedLocations": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "Allowed locations",
+     "description": "The list of locations that can be specified when deploying resources.",
+     "strongType": "location"
+    },
+    "defaultValue": [
+     "westeurope"
+    ]
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "location",
+      "notIn": "[parameters('allowedLocations')]"
+     },
+     {
+      "field": "location",
+      "notEquals": "global"
+     },
+     {
+      "field": "type",
+      "notEquals": "Microsoft.AzureActiveDirectory/b2cDirectories"
+     }
+    ]
+   },
+   "then": {
+    "effect": "Deny"
+   }
+  }
+ },
+ "id": "/subscriptions/88efccc5-931f-42a6-aff2-56fdd52ad51e/providers/Microsoft.Authorization/policyDefinitions/restrict-allowed-locations-policy-test",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "restrict-allowed-locations-policy-test"
+}
